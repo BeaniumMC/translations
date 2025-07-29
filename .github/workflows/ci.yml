@@ -59,7 +59,7 @@ jobs:
         run: |
           mkdir -p exports
           cd translations
-          zip -r ../exports/translations.zip ./* -i '*/'
+          zip -r ../exports/translations.zip . -i './**.json'
 
       - name: Get Release Tag with Commit Hash
         id: date
