@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing!
+Thank you for your interest in contributing! Please do not solely rely on AI or online translators to create translations.  
 
 ---
 
