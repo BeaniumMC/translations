@@ -58,25 +58,20 @@ jobs:
       - name: Prepare Export
         id: prepare_export
         run: |
-          mkdir -p exports
           cd translations
-          zip -r ../exports/translations.zip . -i './**.json'
-
-      - name: Set Release Tag
-        id: release_tag
-        run: echo "tag=latest" >> "$GITHUB_OUTPUT"
+          zip -r ../translations.zip . -i './**.json'
 
       - name: Create or Overwrite GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.release_tag.outputs.tag }}
+          tag_name: latest
           name: Translations
           prerelease: false
           body: |
             This release contains the latest translation export.
           overwrite: true
           make_latest: true
-          files: ./exports/translations.zip
+          files: ./translations.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
