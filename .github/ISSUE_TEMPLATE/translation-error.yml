@@ -1,0 +1,47 @@
+name: ✏️ Report Translation or Spelling Error
+description: Report a typo, translation error, or incorrect language usage
+title: "[Translation Error] "
+labels: ["translation bug", "spelling"]
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: Which language is affected?
+      placeholder: e.g. French
+    validations:
+      required: true
+
+  - type: input
+    id: file
+    attributes:
+      label: File or Key Path
+      description: Where is the error? Provide the filename or translation key.
+      placeholder: e.g. core.json → "welcome_message"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Text
+      description: What is the current translation or text?
+      placeholder: e.g. "Bienvenuee"
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Correction
+      description: What should it say instead?
+      placeholder: e.g. "Bienvenue"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Context (optional)
+      description: Include any context that might help us understand the issue.
+      placeholder: e.g. "This is the first thing users see on the homepage."
