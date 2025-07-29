@@ -14,7 +14,9 @@ OUTPUT_FILE = os.path.join(OUTPUT_DIR, "summary.json")
 
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
-summary = {}
+summary = {
+    "files": {}
+}
 missing_total = 0
 
 # Load languages from languages.json keys
