@@ -39,12 +39,21 @@ jobs:
         run: python scripts/generate_summary.py
 
       - name: Prepare Export
+        id: prepare_export
         run: |
           mkdir -p exports
-          zip -r exports/translations.zip translations/* -x "translations/*.md" "translations/LICENSE"
+          if [ "$(find translations -mindepth 1 -maxdepth 1 -type d | wc -l)" -gt 0 ]; then
+            cd translations
+            zip -r ../exports/translations.zip ./* -i '*/'
+            echo "zip_created=true" >> $GITHUB_OUTPUT
+          else
+            echo "zip_created=false" >> $GITHUB_OUTPUT
+            echo "No language folders found, skipping zip creation."
+          fi
 
       - name: Get Release Tag with Commit Hash
         id: date
+        if: steps.prepare_export.outputs.zip_created == 'true'
         run: |
           SHORT_SHA=$(git rev-parse --short HEAD)
           DATE_TAG=v$(date +'%Y.%m.%d')-${SHORT_SHA}
@@ -52,6 +61,7 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
+        if: steps.prepare_export.outputs.zip_created == 'true'
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.date.outputs.tag }}
@@ -62,6 +72,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload ZIP to GitHub Release
+        if: steps.prepare_export.outputs.zip_created == 'true'
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
