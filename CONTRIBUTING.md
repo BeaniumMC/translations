@@ -26,7 +26,10 @@ By contributing, you agree to license your work under the terms listed below:
 
 ## ✅ How to Submit a Translation
 
-1. Fork the repository
+> [!NOTE]
+> Use [the website](https://beaniummc.github.io/translations/) to see what translations are missing
+
+1. Fork the repository or create a new branch
 2. Edit translation files in the `/translations` folder (original strings can be found in the `/sources` folder)
 3. Submit a pull request with a clear description
 4. Make sure your edits only include translation-related changes
