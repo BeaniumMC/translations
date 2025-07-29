@@ -61,33 +61,23 @@ jobs:
           cd translations
           zip -r ../exports/translations.zip . -i './**.json'
 
-      - name: Get Release Tag with Commit Hash
-        id: date
-        run: |
-          SHORT_SHA=$(git rev-parse --short HEAD)
-          DATE_TAG=v$(date +'%Y.%m.%d')-${SHORT_SHA}
-          echo "tag=${DATE_TAG}" >> "$GITHUB_OUTPUT"
+      - name: Set Release Tag
+        id: release_tag
+        run: echo "tag=latest-translations" >> "$GITHUB_OUTPUT"
 
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Create or Overwrite GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.date.outputs.tag }}
-          release_name: "Translation Export - ${{ steps.date.outputs.tag }}"
-          draft: false
+          tag_name: ${{ steps.release_tag.outputs.tag }}
+          name: Translation Export - latest
           prerelease: false
+          body: |
+            This release contains the latest translation export.
+          overwrite: true
+          files: ./exports/translations.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload ZIP to GitHub Release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./exports/translations.zip
-          asset_name: translations.zip
-          asset_content_type: application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: build
