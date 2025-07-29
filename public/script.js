@@ -5,7 +5,7 @@ Promise.all([
   const container = document.getElementById("dashboard");
   container.innerHTML = "";
 
-  for (const [file, info] of Object.entries(data)) {
+  for (const [file, info] of Object.entries(data.files)) {
     const table = document.createElement("table");
     const thead = document.createElement("thead");
     thead.innerHTML = `<tr><th colspan="4"><a href="${info.url}">${file}</a></th></tr><tr><th>Language</th><th>Completed</th><th>Missing Keys</th><th>%</th></tr>`;

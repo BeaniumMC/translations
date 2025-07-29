@@ -2,6 +2,9 @@
 
 [![Build & Release & Deploy](https://github.com/BeaniumMC/translations/actions/workflows/ci.yml/badge.svg)](https://beaniummc.github.io/translations/)  
 
+![Missing strings](https://img.shields.io/endpoint?url=https%3A%2F%2Fbeaniummc.github.io%2Ftranslations%2Fmissing_total.json)]
+![Languages](https://img.shields.io/endpoint?url=https%3A%2F%2Fbeaniummc.github.io%2Ftranslations%2Flanguages.json)]
+
 Translations for the Beanium server.  
 
 **Found incorrect translations? [Submit an issue](https://github.com/BeaniumMC/translations/issues/new?template=translation-error.yml).**  
