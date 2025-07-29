@@ -2,6 +2,8 @@
 
 Translations for the Beanium server.  
 
+**Found incorrect translations? [Submit an issue](https://github.com/BeaniumMC/translations/issues/new?template=translation-error.yml).**  
+
 ## Contributing
 
 Please refer to the [Contributing Guidelines](./CONTRIBUTING.md).  
