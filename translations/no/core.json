@@ -1,0 +1,23 @@
+{
+  "command.msg.blocked": "&cDu har blokkert denne spilleren",
+  "command.msg.cannot_message": "&cDu kan ikke sende meldinger til denne spilleren",
+  "command.msg.from": "&7%1$s&7 &8» &6&lDeg&7: &f%2$s",
+  "command.msg.reply": "&cDu har ingen å svare",
+  "command.msg.self": "&cDu kan ikke sende meldinger til deg selv",
+  "command.msg.to": "&6&lDeg&8 » &7%1$s&7: &f%2$s",
+  "command.msg.usage": "&cBruk: /msg <spiller> <melding>",
+  "command.reply.usage": "&cBruk: /reply <melding>",
+  "generic.not_a_number": "&c%1$s er ikke et tall",
+  "generic.player_not_found": "&cSpiller ble ikke funnet",
+  "server.already_connected": "&cDu er allerede koblet til denne serveren",
+  "server.already_queued": "&cDu er allerede i køen",
+  "server.attempt_rejoin": "&cPrøver å koble til %1$s på nytt",
+  "server.connect_fail": "&cKunne ikke koble til denne serveren",
+  "server.disconnected": "&cDu ble koblet fra serveren, så du ble sendt til lobbyen",
+  "server.lobby.connecting": "&cKobler til lobby #%1$s",
+  "server.lobby.none": "&cDet finnes ingen lobby #%1$s",
+  "server.not_queued": "&cDu er ikke i en kø",
+  "server.queue.removed": "&cDu har blitt fjernet fra køen",
+  "server.queued": "&7Du er &a#%1$s &7i køen",
+  "server.rejoin_fail": "&cIngen spill å bli med på nytt"
+}

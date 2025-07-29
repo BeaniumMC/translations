@@ -1,0 +1,21 @@
+{
+  "menu.book.close.desc": "Klikk for å lukke",
+  "menu.book.close.title": "Lukk",
+  "menu.book.go_back.desc": "Klikk for å gå tilbake",
+  "menu.book.go_back.title": "Gå tilbake",
+  "menu.profile.lang.changed": "Språket vil kanskje ikke endre seg umiddelbart, vennligst koble til på nytt for full effekt",
+  "menu.profile.lang.click_to_open": "Klikk for å åpne",
+  "menu.profile.lang.default": "Standard Beanium-opplevelse",
+  "menu.profile.lang.information": "Informasjon",
+  "menu.profile.lang.progress": "Fremdrift:",
+  "menu.profile.lang.select": "Klikk for å velge",
+  "menu.profile.lang.selected": "Valgt",
+  "menu.profile.lang.selected_language": "Valgte %s",
+  "menu.profile.lang.title": "Velg språk",
+  "menu.profile.lang.translators": "Oversettere:",
+  "menu.profile.settings": "Innstillinger",
+  "menu.profile.title": "Profil",
+  "tag.default": "Standard",
+  "tag.default_language": "Standardspråk",
+  "tag.language": "Språk"
+}
