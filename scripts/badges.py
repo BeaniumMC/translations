@@ -11,6 +11,8 @@ def create_badge(label: str, message: str, color: str, path: str):
         "color": color
     }
 
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     with open(os.path.join(OUTPUT_DIR, path), "w") as f:
         json.dump(badge_data, f)
 
