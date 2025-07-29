@@ -1,5 +1,5 @@
 {
   "greet": "Hello, %s!",
   "count": "You have %1$d items",
-  "test2": "Amazing testing"
+  "test": "Amazing testing"
 }
