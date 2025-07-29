@@ -63,13 +63,13 @@ jobs:
 
       - name: Set Release Tag
         id: release_tag
-        run: echo "tag=latest-translations" >> "$GITHUB_OUTPUT"
+        run: echo "tag=latest" >> "$GITHUB_OUTPUT"
 
       - name: Create or Overwrite GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.release_tag.outputs.tag }}
-          name: Translation Export - latest
+          name: Translations
           prerelease: false
           body: |
             This release contains the latest translation export.
