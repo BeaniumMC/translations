@@ -36,9 +36,12 @@ jobs:
           zip -r exports/translations.zip translations languages.json
 # contributors.json
 
-      - name: Get Current Date as Tag
+      - name: Get Release Tag with Commit Hash
         id: date
-        run: echo "tag=v$(date +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          DATE_TAG=v$(date +'%Y.%m.%d')-${SHORT_SHA}
+          echo "tag=${DATE_TAG}" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         id: create_release
