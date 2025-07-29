@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Translation Dashboard</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #f5f5f5; }
-    .complete { background: #d4edda; }
-    .partial { background: #fff3cd; }
-    .missing { background: #f8d7da; }
-  </style>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./favicon.ico">
 </head>
 <body>
   <h1>🌍 Translation Dashboard</h1>
+  <h1><img src="./logo.webp" alt="Logo" style="height: 1.2em; vertical-align: middle;"> Translation Dashboard</h1>
   <div id="dashboard">Loading...</div>
 
   <script>
@@ -40,7 +34,7 @@
             row.className = className;
 
             row.innerHTML = `
-              <td><a href="${stat.edit_url}">${lang}</a></td>
+              <td><a href="${stat.url}">${lang}</a></td>
               <td>${stat.completed}</td>
               <td>${stat.missing.join(", ")}</td>
               <td>${stat.percent}%</td>
