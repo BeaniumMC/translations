@@ -1,0 +1,54 @@
+name: Build & Deploy Dashboard & Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sources/**'
+      - 'translations/**'
+      - 'scripts/**'
+      - 'languages.json'
+
+jobs:
+  build-deploy-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Lint Translations
+        run: python scripts/lint_translations.py
+
+      - name: Generate Summary
+        run: python scripts/generate_summary.py
+
+#      - name: Deploy GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./public
+#
+#      - name: Prepare Export
+#        run: |
+#          mkdir -p exports
+#          zip -r exports/translations.zip translations languages.json contributors.json
+#
+#      - name: Get Current Date as Tag
+#        id: date
+#        run: echo "tag=v$(date +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
+#
+#      - name: Upload ZIP to Dated GitHub Release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          tag_name: ${{ steps.date.outputs.tag }}
+#          name: "Translation Export - ${{ steps.date.outputs.tag }}"
+#          prerelease: false
+#          files: exports/translations.zip
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}

@@ -1,0 +1,4 @@
+{
+  "greet": "Hello, %s!",
+  "count": "You have %1$d items"
+}
