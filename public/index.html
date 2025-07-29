@@ -27,7 +27,7 @@
         for (const [file, info] of Object.entries(data)) {
           const table = document.createElement("table");
           const thead = document.createElement("thead");
-          thead.innerHTML = `<tr><th colspan="4">${file}</th></tr><tr><th>Language</th><th>Completed</th><th>Missing Keys</th><th>%</th></tr>`;
+          thead.innerHTML = `<tr><th colspan="4"><a href="${info.url}">${file}</a></th></tr><tr><th>Language</th><th>Completed</th><th>Missing Keys</th><th>%</th></tr>`;
           table.appendChild(thead);
 
           const tbody = document.createElement("tbody");
@@ -40,7 +40,7 @@
             row.className = className;
 
             row.innerHTML = `
-              <td>${lang}</td>
+              <td><a href="${stat.edit_url}">${lang}</a></td>
               <td>${stat.completed}</td>
               <td>${stat.missing.join(", ")}</td>
               <td>${stat.percent}%</td>

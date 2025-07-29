@@ -1,10 +1,13 @@
 import os
 import json
 
+GITHUB_REPO = "https://github.com/BeaniumMC/translations/tree/main"
+
 SOURCES_DIR = "sources"
 TRANSLATIONS_DIR = "translations"
-OUTPUT_FILE = "public/summary.json"
 LANGUAGES_FILE = "languages.json"
+
+OUTPUT_FILE = "public/summary.json"
 
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
@@ -25,6 +28,7 @@ for source_file in source_files:
     summary[source_file] = {
         "total": len(source_keys),
         "keys": source_keys,
+        "url": f"{GITHUB_REPO}/{SOURCES_DIR}/{source_file}",
         "translations": {}
     }
 
@@ -43,7 +47,8 @@ for source_file in source_files:
         summary[source_file]["translations"][lang] = {
             "completed": translated,
             "missing": missing,
-            "percent": percent
+            "percent": percent,
+            "url": f"{GITHUB_REPO}/{TRANSLATIONS_DIR}/{lang}/{source_file}"
         }
 
 with open(OUTPUT_FILE, "w", encoding="utf-8") as out:

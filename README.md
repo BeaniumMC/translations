@@ -1,7 +1,6 @@
 # Beanium Server Translations
 
-> [!NOTE]
-> This repository is not finished, it is still being tested
+[![Build & Publish](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml)  
 
 Translations for the Beanium server.  
 
