@@ -1,0 +1,19 @@
+{
+  "languages": {
+    "no": {
+      "name": "Norwegian (bokmål)",
+      "native": "Norsk (bokmål)",
+      "translators": [
+        "BigVirusBoi"
+      ]
+    },
+    "nl": {
+      "name": "Dutch",
+      "native": "Nederlands",
+      "translators": [
+        "skaffa",
+        "quaatos"
+      ]
+    }
+  }
+}
