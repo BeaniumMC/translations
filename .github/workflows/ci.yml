@@ -74,10 +74,10 @@ jobs:
           body: |
             This release contains the latest translation export.
           overwrite: true
+          make_latest: true
           files: ./exports/translations.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
   deploy:
     needs: build

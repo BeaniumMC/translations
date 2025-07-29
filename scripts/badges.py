@@ -19,4 +19,4 @@ def create_badge(label: str, message: str, color: str, path: str):
 
 def create_badges(missing_total: int, languages: int):
     create_badge("Missing strings", str(missing_total), "green" if missing_total == 0 else "red", "missing_strings.json")
-    create_badge("Languages", str(languages), "lightblue", "languages.json")
+    create_badge("Languages", str(languages), "blue", "languages.json")
