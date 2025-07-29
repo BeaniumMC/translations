@@ -1,0 +1,39 @@
+name: 🌐 Request New Language
+description: Suggest adding support for a new language to the translation project
+title: "[Language] Add support for __"
+labels: ["language-request", "translation"]
+assignees: BigVirusBoi
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language Name
+      description: What language would you like to add?
+      placeholder: e.g. Spanish
+    validations:
+      required: true
+
+  - type: input
+    id: language-code
+    attributes:
+      label: Language Code
+      description: ISO 639-1 two-letter code (e.g. `es` for Spanish, `de` for German)
+      placeholder: e.g. es
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this language important?
+      description: Tell us why this language should be supported.
+      placeholder: e.g. It's widely spoken in my region, and I'd like to help translate it.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Would you like to contribute the initial translation?
+      options:
+        - label: Yes, I'm interested in helping with the translation!
