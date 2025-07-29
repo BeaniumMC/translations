@@ -22,15 +22,6 @@ body:
       required: true
 
   - type: textarea
-    id: current
-    attributes:
-      label: Current Text
-      description: What is the current translation or text?
-      placeholder: e.g. "Bienvenuee"
-    validations:
-      required: true
-
-  - type: textarea
     id: suggested
     attributes:
       label: Suggested Correction
