@@ -2,6 +2,8 @@
 
 The files are named like this: `<language>/<path>.json`. (ex: `en/main.json`)  
 
+View the original sources in the [`/sources`](/sources) folder.  
+
 ## File format
 
 It is important to format the JSON correctly before creating a PR.  
