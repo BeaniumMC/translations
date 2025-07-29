@@ -1,7 +1,7 @@
 import json
 import os
 
-OUTPUT_DIR = "public"
+OUTPUT_DIR = "public/badges"
 
 def create_badge(label: str, message: str, color: str, path: str):
     badge_data = {
