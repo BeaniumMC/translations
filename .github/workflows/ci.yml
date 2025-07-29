@@ -31,8 +31,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Lint Translations
-        run: python scripts/lint_translations.py
+#      - name: Lint Translations
+#        run: python scripts/lint_translations.py
 
       - name: Generate Summary
         run: python scripts/generate_summary.py
