@@ -47,9 +47,13 @@ jobs:
           path: public
 
   export:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Prepare Export
         id: prepare_export
         run: |
