@@ -8,6 +8,8 @@ on:
       - 'translations/**'
       - 'scripts/**'
       - 'languages.json'
+#      - 'contributors.json'
+#      - 'public/index.html'
 
 jobs:
   build-deploy-release:
@@ -28,27 +30,27 @@ jobs:
       - name: Generate Summary
         run: python scripts/generate_summary.py
 
-#      - name: Deploy GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v4
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: ./public
-#
-#      - name: Prepare Export
-#        run: |
-#          mkdir -p exports
-#          zip -r exports/translations.zip translations languages.json contributors.json
-#
-#      - name: Get Current Date as Tag
-#        id: date
-#        run: echo "tag=v$(date +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
-#
-#      - name: Upload ZIP to Dated GitHub Release
-#        uses: softprops/action-gh-release@v2
-#        with:
-#          tag_name: ${{ steps.date.outputs.tag }}
-#          name: "Translation Export - ${{ steps.date.outputs.tag }}"
-#          prerelease: false
-#          files: exports/translations.zip
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+
+      - name: Prepare Export
+        run: |
+          mkdir -p exports
+          zip -r exports/translations.zip translations languages.json
+# contributors.json
+      - name: Get Current Date as Tag
+        id: date
+        run: echo "tag=v$(date +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Upload ZIP to Dated GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.date.outputs.tag }}
+          name: "Translation Export - ${{ steps.date.outputs.tag }}"
+          prerelease: false
+          files: exports/translations.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
