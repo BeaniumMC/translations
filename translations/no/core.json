@@ -10,7 +10,7 @@
   "server.already_connected": "&cDu er allerede koblet til denne serveren",
   "server.already_queued": "&cDu er allerede i køen",
   "server.connect_fail": "&cKunne ikke koble til denne serveren",
-  "server.lobby.none": "&cDet finnes ingen lobby #%1$s",
+  "server.lobby.none": "&cDet finnes ingen %1$s %2$s",
   "server.not_queued": "&cDu er ikke i en kø",
   "server.queue.removed": "&cDu har blitt fjernet fra køen",
   "server.queued": "&7Du er &a#%1$s &7i køen"

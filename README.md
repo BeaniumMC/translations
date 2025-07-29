@@ -1,10 +1,11 @@
 # Beanium Server Translations
 
-[![Build & Release & Deploy](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml/badge.svg)](https://beaniummc.github.io/translations/)  
+[![Build & Release & Deploy](https://github.com/BeaniumMC/translations/actions/workflows/ci.yml/badge.svg)](https://beaniummc.github.io/translations/)  
 
 Translations for the Beanium server.  
 
 **Found incorrect translations? [Submit an issue](https://github.com/BeaniumMC/translations/issues/new?template=translation-error.yml).**  
+**Questions? Ask them in our [discussions](https://github.com/orgs/BeaniumMC/discussions/categories/translations).**  
 
 ## Contributing
 
