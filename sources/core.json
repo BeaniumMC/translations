@@ -13,5 +13,6 @@
   "server.lobby.none": "&cThere is no %1$s %2$s",
   "server.not_queued": "&cYou are not in a queue",
   "server.queue.removed": "&7You have been removed from the queue",
-  "server.queued": "&7You are &a#%1$s &7in the queue"
+  "server.queued": "&7You are &a#%1$s &7in the queue",
+  "test": "test"
 }
