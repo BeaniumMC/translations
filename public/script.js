@@ -20,7 +20,7 @@ Promise.all([
       if (stat.percent === 0) className = "missing";
       row.className = className;
 
-      const languageName = languages[lang]?.name || lang;
+      const languageName = languages[lang]?.display_name || lang;
 
       row.innerHTML = `
         <td><a href="${stat.url}">${languageName}</a></td>
