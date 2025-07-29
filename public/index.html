@@ -1,13 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Beanium Translations</title>
+  <meta charset="UTF-8">
+  <title>Translation Dashboard</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f5f5f5; }
+    .complete { background: #d4edda; }
+    .partial { background: #fff3cd; }
+    .missing { background: #f8d7da; }
+  </style>
 </head>
 <body>
-    <h1>Beanium Translations</h1>
+  <h1>🌍 Translation Dashboard</h1>
+  <div id="dashboard">Loading...</div>
+
+  <script>
+    fetch("summary.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("dashboard");
+        container.innerHTML = "";
+
+        for (const [file, info] of Object.entries(data)) {
+          const table = document.createElement("table");
+          const thead = document.createElement("thead");
+          thead.innerHTML = `<tr><th colspan="4">${file}</th></tr><tr><th>Language</th><th>Completed</th><th>Missing Keys</th><th>%</th></tr>`;
+          table.appendChild(thead);
+
+          const tbody = document.createElement("tbody");
+
+          for (const [lang, stat] of Object.entries(info.translations)) {
+            const row = document.createElement("tr");
+            let className = "complete";
+            if (stat.percent < 100 && stat.percent > 0) className = "partial";
+            if (stat.percent === 0) className = "missing";
+            row.className = className;
+
+            row.innerHTML = `
+              <td>${lang}</td>
+              <td>${stat.completed}</td>
+              <td>${stat.missing.join(", ")}</td>
+              <td>${stat.percent}%</td>
+            `;
+            tbody.appendChild(row);
+          }
+
+          table.appendChild(tbody);
+          container.appendChild(table);
+        }
+      });
+  </script>
 </body>
 </html>
