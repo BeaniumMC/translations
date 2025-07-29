@@ -1,18 +1,16 @@
 {
-  "languages": {
-    "no": {
-      "display_name": "Norwegian (bokmål)",
-      "native_name": "Norsk (bokmål)",
-      "contributors": [
-        "BigVirusBoi"
-      ]
-    },
-    "nl": {
-      "display_name": "Dutch",
-      "native_name": "Nederlands",
-      "contributors": [
-        "skaffa"
-      ]
-    }
+  "no": {
+    "display_name": "Norwegian (bokmål)",
+    "native_name": "Norsk (bokmål)",
+    "contributors": [
+      "BigVirusBoi"
+    ]
+  },
+  "nl": {
+    "display_name": "Dutch",
+    "native_name": "Nederlands",
+    "contributors": [
+      "skaffa"
+    ]
   }
 }

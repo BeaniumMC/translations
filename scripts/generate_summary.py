@@ -4,13 +4,18 @@ import json
 SOURCES_DIR = "sources"
 TRANSLATIONS_DIR = "translations"
 OUTPUT_FILE = "public/summary.json"
+LANGUAGES_FILE = "languages.json"
 
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
 summary = {}
 
+# Load languages from languages.json keys
+with open(LANGUAGES_FILE, encoding="utf-8") as lang_file:
+    languages_data = json.load(lang_file)
+    languages = list(languages_data.keys())
+
 source_files = [f for f in os.listdir(SOURCES_DIR) if f.endswith(".json")]
-languages = [d for d in os.listdir(TRANSLATIONS_DIR) if os.path.isdir(os.path.join(TRANSLATIONS_DIR, d))]
 
 for source_file in source_files:
     with open(os.path.join(SOURCES_DIR, source_file), encoding="utf-8") as f:
