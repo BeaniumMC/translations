@@ -3,9 +3,10 @@ name: Lint Translations
 on:
   pull_request:
     paths:
-      - 'translations/**'
       - 'sources/**'
-      - 'scripts/lint_translations.py'
+      - 'translations/**'
+      - 'scripts/**'
+      - 'public/**'
 
 jobs:
   lint:
