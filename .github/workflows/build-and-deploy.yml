@@ -1,4 +1,4 @@
-name: Build & Deploy Dashboard & Release
+name: Build & Release & Deploy
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
       - 'translations/**'
       - 'scripts/**'
       - 'public/**'
-      - 'languages.json'
 
 permissions:
   contents: write
@@ -39,7 +38,7 @@ jobs:
         run: python scripts/generate_summary.py
 
       - name: Copy Language Definitions
-        run: cp languages.json public/languages.json
+        run: cp translations/languages.json public/languages.json
 
       - name: Prepare Export
         id: prepare_export

@@ -1,6 +1,6 @@
 # Translations
 
-The files are named like this: `<language>/<path>.json`. (ex: `en/main.json`)  
+The files are named like this: `<language>/<path>.json`. (ex: `fr/main.json`)  
 
 View the original sources in the [`/sources`](/sources) folder.  
 

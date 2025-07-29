@@ -1,6 +1,6 @@
 # Beanium Server Translations
 
-[![Build & Deploy Dashboard & Release](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml)  
+[![Build & Release & Deploy](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/BeaniumMC/translations/actions/workflows/build-and-deploy.yml)  
 
 Translations for the Beanium server.  
 

@@ -5,7 +5,7 @@ GITHUB_REPO = "https://github.com/BeaniumMC/translations/tree/main"
 
 SOURCES_DIR = "sources"
 TRANSLATIONS_DIR = "translations"
-LANGUAGES_FILE = "languages.json"
+LANGUAGES_FILE = os.path.join(TRANSLATIONS_DIR, "languages.json")
 
 OUTPUT_FILE = "public/summary.json"
 

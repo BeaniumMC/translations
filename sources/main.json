@@ -1,0 +1,21 @@
+{
+  "menu.book.close.desc": "Click to close",
+  "menu.book.close.title": "Close",
+  "menu.book.go_back.desc": "Click to go back",
+  "menu.book.go_back.title": "Go back",
+  "menu.profile.lang.changed": "The language might not change right away, please relog for full effect",
+  "menu.profile.lang.click_to_open": "Click to open",
+  "menu.profile.lang.default": "The default Beanium experience",
+  "menu.profile.lang.information": "Information",
+  "menu.profile.lang.progress": "Progress:",
+  "menu.profile.lang.select": "Click to select",
+  "menu.profile.lang.selected": "Selected",
+  "menu.profile.lang.selected_language": "Selected %s",
+  "menu.profile.lang.title": "Select Language",
+  "menu.profile.lang.translators": "Translators:",
+  "menu.profile.settings": "Settings",
+  "menu.profile.title": "Profile",
+  "tag.default": "Default",
+  "tag.default_language": "Default Language",
+  "tag.language": "Language"
+}

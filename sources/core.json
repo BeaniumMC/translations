@@ -1,0 +1,17 @@
+{
+  "command.msg.blocked": "&cYou have blocked this player",
+  "command.msg.cannot_message": "&cYou cannot message this player",
+  "command.msg.reply": "&cYou have no one to reply to",
+  "command.msg.self": "&cYou can't message yourself",
+  "command.msg.usage": "&cUsage: /msg <player> <message>",
+  "command.reply.usage": "&cUsage: /reply <message>",
+  "generic.not_a_number": "&c%1$s is not a number",
+  "generic.player_not_found": "&cPlayer not found",
+  "server.already_connected": "&cYou are already connected to this server",
+  "server.already_queued": "&cYou are already in the queue",
+  "server.connect_fail": "&cCould not connect to this server",
+  "server.lobby.none": "&cThere is no %1$s %2$s",
+  "server.not_queued": "&cYou are not in a queue",
+  "server.queue.removed": "&7You have been removed from the queue",
+  "server.queued": "&7You are &a#%1$s &7in the queue"
+}
