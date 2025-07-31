@@ -12,5 +12,10 @@
     "contributors": [
       "skaffa"
     ]
+  },
+  "dk": {
+    "display_name": "Danish",
+    "native_name": "Dansk",
+    "contributors": []
   }
 }
