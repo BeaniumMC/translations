@@ -2,20 +2,20 @@
   "no": {
     "display_name": "Norwegian (bokmål)",
     "native_name": "Norsk (bokmål)",
-    "contributors": [
+    "translators": [
       "BigVirusBoi"
     ]
   },
   "nl": {
     "display_name": "Dutch",
     "native_name": "Nederlands",
-    "contributors": [
+    "translators": [
       "skaffa"
     ]
   },
   "dk": {
     "display_name": "Danish",
     "native_name": "Dansk",
-    "contributors": []
+    "translators": []
   }
 }
