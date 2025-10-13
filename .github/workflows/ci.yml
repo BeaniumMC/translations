@@ -34,9 +34,9 @@ jobs:
       - name: Generate Summary
         run: python scripts/generate_summaries.py
 
-      - name: Copy Language Definitions
+      - name: Copy Translations
         run: |
-          cp translations/languages.json public/languages.json
+          cp translations/* public/translations/
 
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v4
