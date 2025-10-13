@@ -3,7 +3,7 @@ import json
 
 import badges
 
-GITHUB_REPO = "https://github.com/BeaniumMC/translations/tree/main"
+GITHUB_REPO = "https://github.com/BeaniumMC/translations/blob/main"
 
 SOURCES_DIR = "sources"
 TRANSLATIONS_DIR = "translations"
