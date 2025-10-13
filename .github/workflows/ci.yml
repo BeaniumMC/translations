@@ -58,6 +58,7 @@ jobs:
       - name: Prepare Export
         id: prepare_export
         run: |
+          cp public/summary.json translations/
           cd translations
           zip -r ../translations.zip . -i './**.json'
 
