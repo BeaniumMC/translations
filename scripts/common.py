@@ -1,4 +1,5 @@
 import os
+import json
 
 GITHUB_REPO_URL = 'https://github.com/BeaniumMC/translations'
 PUBLIC_DIR = 'public'
