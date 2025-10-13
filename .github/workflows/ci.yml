@@ -38,6 +38,7 @@ jobs:
         run: |
           mkdir public/translations/
           cp -r translations/* public/translations/
+          cp sources/projects.json public/projects.json
 
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v4
@@ -54,31 +55,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Download public folder artifact
         uses: actions/download-artifact@v4
         with:
           name: public-folder
           path: public
 
-      - name: Prepare Export
-        id: prepare_export
+      - name: Create Project Translation Exports
         run: |
-          cd translations
-          cp ../sources/projects.json projects.json
-          cp ../summary/*.json summary/
-          zip -r ../translations.zip . -i ./**.json
+          cp public/projects.json translations/projects.json
+          python export_translations.py
 
-      - name: Create or Overwrite GitHub Release
+      - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
           name: Translations
           prerelease: false
           body: |
-            This release contains the latest translation export.
+            This release contains the latest translation exports per project.
           overwrite: true
           make_latest: true
-          files: ./translations.zip
+          files: exports/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

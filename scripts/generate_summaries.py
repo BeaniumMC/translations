@@ -6,14 +6,14 @@ import badges
 from common import *
 
 GITHUB_REPO = f"{GITHUB_REPO_URL}/blob/main"
-OUTPUT_DIR = 'summary'
+OUTPUT_DIR = os.path.join(, 'summary')
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 projects = load_projects()
 
 for project in projects:
-    OUTPUT_FILE = os.path.join(OUTPUT_DIR, f"{project.id}.json")
+    output_file = os.path.join(OUTPUT_DIR, f"{project.id}.json")
 
     summary = {
         'files': {}
@@ -63,9 +63,9 @@ for project in projects:
 
     summary['missing_total'] = missing_total
 
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as out:
+    with open(output_file, 'w', encoding='utf-8') as out:
         json.dump(summary, out, indent=2, ensure_ascii=False)
 
-    print(f"✅ Summary of {project.name} written to {OUTPUT_FILE}")
+    print(f"✅ Summary of {project.name} written to {output_file}")
 
 badges.create_badges(missing_total, len(projects))

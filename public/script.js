@@ -1,4 +1,5 @@
 Promise.all([
+  fetch('projects.json').then(res => res.json()),
   fetch('summary.json').then(res => res.json()),
   fetch('languages.json').then(res => res.json())
 ]).then(([data, languages]) => {
