@@ -32,9 +32,6 @@ jobs:
         with:
           python-version: '3.12'
 
-#      - name: Lint Translations
-#        run: python scripts/lint_translations.py
-
       - name: Generate Summary
         run: python scripts/generate_summary.py
 
@@ -42,6 +39,8 @@ jobs:
         run: |
           cp translations/languages.json public/languages.json
           cp summary.json public/summary.json
+          ls -a
+          cd
 
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v4
