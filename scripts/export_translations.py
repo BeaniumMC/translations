@@ -8,7 +8,7 @@ OUTPUT_DIR = './exports'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 for project in load_projects():
-    zip_name = f"translations-{item}.zip"
+    zip_name = f"translations-{project.id}.zip"
     zip_path = os.path.join(OUTPUT_DIR, zip_name)
 
     translations_dir = project.get_translations_dir()
