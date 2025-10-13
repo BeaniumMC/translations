@@ -39,7 +39,9 @@ jobs:
         run: python scripts/generate_summary.py
 
       - name: Copy Language Definitions
-        run: cp translations/languages.json public/languages.json
+        run: |
+          cp translations/languages.json public/languages.json
+          cp summary.json public/summary.json
 
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v4
@@ -59,7 +61,7 @@ jobs:
       - name: Prepare Export
         id: prepare_export
         run: |
-          cp public/summary.json translations/
+          cp summary.json translations/summary.json
           cd translations
           zip -r ../translations.zip . -i './**.json'
 
