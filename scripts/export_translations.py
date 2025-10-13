@@ -16,7 +16,7 @@ for project in load_projects():
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, _, files in os.walk(translations_dir):
             for file in files:
-                if file.endswith('.json"):
+                if file.endswith('.json'):
                     full_path = os.path.join(root, file)
                     arcname = os.path.relpath(full_path, translations_dir)
                     zipf.write(full_path, arcname)
