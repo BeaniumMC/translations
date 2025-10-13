@@ -7,6 +7,12 @@ fetch("projects.json").then((res) => res.json()).then((projects) => {
       fetch(`summary/${project.id}.json`).then((res) => res.json()),
       fetch(`translations/${project.id}/languages.json`).then((res) => res.json())
     ]).then(([data, languages]) => {
+      const title = document.createElement('h2');
+      title.innerText = project.name;
+      const description = document.createElement('p');
+      description.innerText = project.description;
+      container.append(title, description);
+
       for (const [file, info] of Object.entries(data.files)) {
         const table = document.createElement("table");
         const thead = document.createElement("thead");
