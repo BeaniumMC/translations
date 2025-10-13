@@ -5,7 +5,6 @@ PUBLIC_DIR = 'public'
 SOURCES_DIR = 'sources'
 TRANSLATIONS_DIR = 'translations'
 PROJECTS_FILE = os.path.join(SOURCES_DIR, 'projects.json')
-PLACEHOLDER_REGEX = re.compile(r"%(\d+\$)?[sd]")
 
 class Project:
     def __init__(self, data: dict):

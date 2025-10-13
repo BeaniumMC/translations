@@ -5,6 +5,8 @@ import sys
 
 from common import *
 
+PLACEHOLDER_REGEX = re.compile(r"%(\d+\$)?[sd]")
+
 def extract_placeholders(text):
     return sorted(set(PLACEHOLDER_REGEX.findall(text or '')))
 
