@@ -9,7 +9,10 @@ SOURCES_DIR = "sources"
 TRANSLATIONS_DIR = "translations"
 LANGUAGES_FILE = os.path.join(TRANSLATIONS_DIR, "languages.json")
 
-OUTPUT_FILE = "summary.json"
+OUTPUT_DIR = "public"
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "summary.json")
+
+os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
 summary = {
     "files": {}

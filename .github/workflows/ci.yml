@@ -37,9 +37,6 @@ jobs:
       - name: Copy Language Definitions
         run: |
           cp translations/languages.json public/languages.json
-          cp summary.json public/summary.json
-          ls -a
-          cd
 
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v4
@@ -56,11 +53,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Download public folder artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public-folder
+          path: public
+
       - name: Prepare Export
         id: prepare_export
         run: |
-          cp summary.json translations/summary.json
           cd translations
+          cp ../public/summary.json summary.json
           zip -r ../translations.zip . -i './**.json'
 
       - name: Create or Overwrite GitHub Release
