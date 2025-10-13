@@ -10,7 +10,9 @@ OUTPUT_DIR = 'summary'
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-for project in load_projects():
+projects = load_projects()
+
+for project in projects:
     OUTPUT_FILE = os.path.join(OUTPUT_DIR, f"{project.id}.json")
 
     summary = {
@@ -66,4 +68,4 @@ for project in load_projects():
 
     print(f"✅ Summary of {project.name} written to {OUTPUT_FILE}")
 
-badges.create_badges(missing_total, len(languages))
+badges.create_badges(missing_total, len(projects))

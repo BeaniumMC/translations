@@ -19,6 +19,6 @@ def create_badge(label: str, message: str, color: str, path: str):
         json.dump(badge_data, f)
 
 
-def create_badges(missing_total: int, languages: int):
+def create_badges(missing_total: int, projects: int):
     create_badge('Missing strings', str(missing_total), 'green' if missing_total == 0 else 'red', 'missing_strings.json')
     create_badge('Projects', str(projects), 'blue', 'projects.json')
