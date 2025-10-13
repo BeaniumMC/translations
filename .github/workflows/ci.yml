@@ -63,7 +63,8 @@ jobs:
         id: prepare_export
         run: |
           cd translations
-          cp ../public/summary/*.json summary/*.json
+          cp ../sources/projects.json projects.json
+          cp ../summary/*.json summary/
           zip -r ../translations.zip . -i ./**.json
 
       - name: Create or Overwrite GitHub Release
