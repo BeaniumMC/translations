@@ -1,7 +1,9 @@
 import json
 import os
 
-OUTPUT_DIR = 'public/badges'
+from common import *
+
+OUTPUT_DIR = os.path.join(PUBLIC_DIR, 'badges')
 
 def create_badge(label: str, message: str, color: str, path: str):
     badge_data = {
@@ -19,4 +21,4 @@ def create_badge(label: str, message: str, color: str, path: str):
 
 def create_badges(missing_total: int, languages: int):
     create_badge('Missing strings', str(missing_total), 'green' if missing_total == 0 else 'red', 'missing_strings.json')
-    create_badge('Languages', str(languages), 'blue', 'languages.json')
+    create_badge('Projects', str(projects), 'blue', 'projects.json')

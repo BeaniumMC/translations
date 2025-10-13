@@ -1,6 +1,6 @@
 # Translations
 
-The files are named like this: `<language>/<path>.json`. (ex: `fr/main.json`)  
+The files are named like this: `<project>/<language>/<path>.json`. (ex: `server/fr/main.json`)  
 
 View the original sources in the [`/sources`](/sources) folder.  
 
@@ -18,7 +18,7 @@ You can use [jsonlint.com](https://jsonlint.com/) to check the file content befo
 
 **Important**  
 
-- Do not leave empty strings!
+- Do not leave empty or unknown strings in the translations!
 - Always include double quotes around text! ("like this")
 - Remember to always include the replacement symbols! (%s, %d, %1$s, %2$d)
-- Do not use color codes with the paragraph symbol (§), only use ampersand (&)
+- Do not use color codes with the paragraph symbol - §, only use ampersand - &!

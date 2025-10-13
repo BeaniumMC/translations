@@ -32,7 +32,7 @@ jobs:
           python-version: '3.12'
 
       - name: Generate Summary
-        run: python scripts/generate_summary.py
+        run: python scripts/generate_summaries.py
 
       - name: Copy Language Definitions
         run: |
@@ -63,7 +63,7 @@ jobs:
         id: prepare_export
         run: |
           cd translations
-          cp ../public/summary.json summary.json
+          cp ../public/summary/*.json summary/*.json
           zip -r ../translations.zip . -i ./**.json
 
       - name: Create or Overwrite GitHub Release

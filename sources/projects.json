@@ -1,0 +1,9 @@
+{
+  "projects": [
+    {
+      "id": "server",
+      "name": "Minecraft Server",
+      "description": "Translation strings for the Beanium network"
+    }
+  ]
+}

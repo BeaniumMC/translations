@@ -3,16 +3,15 @@ import re
 import json
 import sys
 
-SOURCES_DIR = 'sources'
-TRANSLATIONS_DIR = 'translations'
-
-PLACEHOLDER_REGEX = re.compile(r"%(\d+\$)?[sd]")
+from common import *
 
 def extract_placeholders(text):
     return sorted(set(PLACEHOLDER_REGEX.findall(text or '')))
 
-def lint_file(source_path, translation_path, lang, filename):
+def lint_file(source_path: str, translation_path: str, project: Project, lang: str, filename: str) -> list:
     errors = []
+
+    file_path = f"{project.id}/{lang}/{filename}"
 
     with open(source_path, encoding='utf-8') as sf:
         try:
@@ -20,7 +19,7 @@ def lint_file(source_path, translation_path, lang, filename):
         except json.JSONDecodeError as e:
             errors.append({
                 'type': 'invalid_json',
-                'file': f"{lang}/{filename}",
+                'file': file_path,
                 'message': f"Source JSON is invalid: {e}"
             })
             return errors
@@ -31,7 +30,7 @@ def lint_file(source_path, translation_path, lang, filename):
     except (FileNotFoundError, json.JSONDecodeError) as e:
         errors.append({
             'type': 'missing_or_invalid',
-            'file': f"{lang}/{filename}",
+            'file': file_path,
             'message': f"Translation file missing or invalid: {e}"
         })
         return errors
@@ -47,7 +46,7 @@ def lint_file(source_path, translation_path, lang, filename):
         if trans_val.strip() == '':
             errors.append({
                 'type': 'empty_string',
-                'file': f"{lang}/{filename}",
+                'file': file_path,
                 'key': key,
                 'message': 'Translation is empty'
             })
@@ -58,7 +57,7 @@ def lint_file(source_path, translation_path, lang, filename):
         if source_ph != trans_ph:
             errors.append({
                 'type': 'placeholder_mismatch',
-                'file': f"{lang}/{filename}",
+                'file': file_path,
                 'key': key,
                 'source_placeholders': source_ph,
                 'translation_placeholders': trans_ph,
@@ -70,27 +69,29 @@ def lint_file(source_path, translation_path, lang, filename):
     for key in extra_keys:
         errors.append({
             'type': 'unused_key',
-            'file': f"{lang}/{filename}",
+            'file': file_path,
             'key': key,
             'message': 'Key does not exist in source'
         })
 
     return errors
 
+
 def main():
     failed = False
-    languages = [d for d in os.listdir(TRANSLATIONS_DIR) if os.path.isdir(os.path.join(TRANSLATIONS_DIR, d))]
-    source_files = [f for f in os.listdir(SOURCES_DIR) if f.endswith('.json')]
-
     all_errors = []
 
-    for filename in source_files:
-        source_path = os.path.join(SOURCES_DIR, filename)
+    for project in load_projects():
+        languages = [d for d in os.listdir(project.get_translations_dir()) if os.path.isdir(os.path.join(project.get_translations_dir(), d))]
+        source_files = [f for f in os.listdir(project.get_sources_dir()) if f.endswith('.json')]
 
-        for lang in languages:
-            translation_path = os.path.join(TRANSLATIONS_DIR, lang, filename)
-            errors = lint_file(source_path, translation_path, lang, filename)
-            all_errors.extend(errors)
+        for filename in source_files:
+            source_path = os.path.join(project.get_sources_dir(), filename)
+
+            for lang in languages:
+                translation_path = os.path.join(project.get_translations_dir(), lang, filename)
+                errors = lint_file(source_path, translation_path, project, lang, filename)
+                all_errors.extend(errors)
 
     if all_errors:
         print('❌ Linting issues found:\n')
