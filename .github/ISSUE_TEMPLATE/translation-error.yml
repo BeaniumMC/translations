@@ -4,6 +4,15 @@ title: "[Translation Error] "
 labels: ["translation"]
 body:
   - type: input
+    id: project
+    attributes:
+      label: Project
+      description: Which project has an error?
+      placeholder: e.g. Server
+    validations:
+      required: true
+
+  - type: input
     id: language
     attributes:
       label: Language

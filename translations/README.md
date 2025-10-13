@@ -16,7 +16,7 @@ You can use [jsonlint.com](https://jsonlint.com/) to check the file content befo
 }
 ```
 
-**Important**  
+## Important
 
 - Do not leave empty or unknown strings in the translations!
 - Always include double quotes around text! ("like this")

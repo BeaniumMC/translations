@@ -1,9 +1,18 @@
 name: 🌐 Request New Language
-description: Suggest adding support for a new language to the translation project
-title: "[Language] Add support for __"
+description: Suggest adding a new language to a project
+title: "[Language] Add LANGUAGE to PROJECT"
 labels: ["language-request"]
 assignees: BigVirusBoi
 body:
+  - type: input
+    id: project
+    attributes:
+      label: Project
+      description: Which project should this language be added to?
+      placeholder: e.g. Server
+    validations:
+      required: true
+
   - type: input
     id: language
     attributes:
