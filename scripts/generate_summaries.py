@@ -6,7 +6,7 @@ import badges
 from common import *
 
 GITHUB_REPO = f"{GITHUB_REPO_URL}/blob/main"
-OUTPUT_DIR = os.path.join(, 'summary')
+OUTPUT_DIR = os.path.join(PUBLIC_DIR, 'summary')
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
