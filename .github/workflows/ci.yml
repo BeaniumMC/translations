@@ -36,6 +36,7 @@ jobs:
 
       - name: Copy Translations
         run: |
+          mkdir public/translations/
           cp translations/* public/translations/
 
       - name: Upload public folder artifact
