@@ -1,7 +1,7 @@
 name: ✏️ Report Translation or Spelling Error
 description: Report a typo, translation error, or incorrect language usage
 title: "[Translation Error] "
-labels: ["translation bug", "spelling"]
+labels: ["translation"]
 body:
   - type: input
     id: language

@@ -4,10 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'sources/**'
-      - 'translations/**'
-      - 'scripts/**'
-      - 'public/**'
+      - sources/**
+      - translations/**
+      - scripts/**
+      - public/**
 
 permissions:
   contents: write
@@ -64,7 +64,7 @@ jobs:
         run: |
           cd translations
           cp ../public/summary.json summary.json
-          zip -r ../translations.zip . -i './**.json'
+          zip -r ../translations.zip . -i ./**.json
 
       - name: Create or Overwrite GitHub Release
         uses: softprops/action-gh-release@v2
@@ -103,7 +103,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public'
+          path: ./public
           retention-days: 1
 
       - name: Deploy to GitHub Pages

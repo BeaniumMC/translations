@@ -1,7 +1,7 @@
 name: 🌐 Request New Language
 description: Suggest adding support for a new language to the translation project
 title: "[Language] Add support for __"
-labels: ["language-request", "translation"]
+labels: ["language-request"]
 assignees: BigVirusBoi
 body:
   - type: input
