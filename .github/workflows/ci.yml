@@ -69,7 +69,7 @@ jobs:
       - name: Create Project Translation Exports
         run: |
           cp public/projects.json translations/projects.json
-          python export_translations.py
+          python scripts/export_translations.py
 
       - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
