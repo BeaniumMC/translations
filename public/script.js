@@ -6,12 +6,6 @@ fetch("projects.json").then((res) => res.json()).then((projects) => {
     Promise.all([
       fetch(`summary/${project.id}.json`).then((res) => res.json()),
       fetch(`translations/${project.id}/languages.json`).then((res) => res.json())
-    ])
-    
-    Promise.all([
-      fetch('projects.json').then(res => res.json()),
-      fetch('summary.json').then(res => res.json()),
-      fetch('languages.json').then(res => res.json())
     ]).then(([data, languages]) => {
       for (const [file, info] of Object.entries(data.files)) {
         const table = document.createElement("table");

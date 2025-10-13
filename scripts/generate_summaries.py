@@ -20,11 +20,7 @@ for project in projects:
     }
     missing_total = 0
 
-    # Load languages from languages.json keys
-    with open(project.get_languages_file(), encoding='utf-8') as lang_file:
-        languages_data = json.load(lang_file)
-        languages = list(languages_data.keys())
-
+    languages = project.get_languages()
     source_files = [f for f in os.listdir(project.get_sources_dir()) if f.endswith('.json')]
 
     for source_file in source_files:
@@ -40,7 +36,7 @@ for project in projects:
         }
 
         for lang in languages:
-            translation_path = os.path.join(project.get_translations_dir(), lang, source_file)
+            translation_path = os.path.join(project.get_translations_dir(), lang.id, source_file)
             try:
                 with open(translation_path, encoding='utf-8') as tf:
                     translation_data = json.load(tf)
@@ -52,11 +48,11 @@ for project in projects:
             translated = len(source_keys) - len(missing)
             percent = int((translated / len(source_keys)) * 100) if source_keys else 0
 
-            file_summary['translations'][lang] = {
+            file_summary['translations'][lang.id] = {
                 'completed': translated,
                 'missing': missing,
                 'percent': percent,
-                'url': f"{GITHUB_REPO}/{project.get_translations_dir()}/{lang}/{source_file}"
+                'url': f"{GITHUB_REPO}/{project.get_translations_dir()}/{lang.id}/{source_file}"
             }
 
         summary['files'][source_file] = file_summary

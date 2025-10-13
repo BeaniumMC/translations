@@ -8,6 +8,7 @@ Thanks for contributing! Please fill out the checklist below to help us review f
 
 <!-- Briefly describe what you translated or improved -->
 
+- Project: `<!-- e.g. Server -->`
 - Language: `<!-- e.g. es (Spanish) -->`
 
 ---

@@ -10,10 +10,10 @@ PLACEHOLDER_REGEX = re.compile(r"%(\d+\$)?[sd]")
 def extract_placeholders(text):
     return sorted(set(PLACEHOLDER_REGEX.findall(text or '')))
 
-def lint_file(source_path: str, translation_path: str, project: Project, lang: str, filename: str) -> list:
+def lint_file(source_path: str, translation_path: str, project: Project, lang: Language, filename: str) -> list:
     errors = []
 
-    file_path = f"{project.id}/{lang}/{filename}"
+    file_path = f"{project.id}/{lang.id}/{filename}"
 
     with open(source_path, encoding='utf-8') as sf:
         try:
@@ -84,14 +84,14 @@ def main():
     all_errors = []
 
     for project in load_projects():
-        languages = [d for d in os.listdir(project.get_translations_dir()) if os.path.isdir(os.path.join(project.get_translations_dir(), d))]
+        languages = project.get_languages()
         source_files = [f for f in os.listdir(project.get_sources_dir()) if f.endswith('.json')]
 
         for filename in source_files:
             source_path = os.path.join(project.get_sources_dir(), filename)
 
             for lang in languages:
-                translation_path = os.path.join(project.get_translations_dir(), lang, filename)
+                translation_path = os.path.join(project.get_translations_dir(), lang.id, filename)
                 errors = lint_file(source_path, translation_path, project, lang, filename)
                 all_errors.extend(errors)
 

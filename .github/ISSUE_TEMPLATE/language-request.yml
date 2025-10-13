@@ -1,7 +1,7 @@
 name: 🌐 Request New Language
 description: Suggest adding a new language to a project
-title: "[Language] Add LANGUAGE to PROJECT"
-labels: ["language-request"]
+title: '[Language] Add LANGUAGE to PROJECT'
+labels: ['language-request']
 assignees: BigVirusBoi
 body:
   - type: input

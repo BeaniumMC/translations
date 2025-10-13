@@ -5,6 +5,8 @@ from common import *
 
 OUTPUT_DIR = os.path.join(PUBLIC_DIR, 'badges')
 
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 def create_badge(label: str, message: str, color: str, path: str):
     badge_data = {
         'schemaVersion': 1,
@@ -12,8 +14,6 @@ def create_badge(label: str, message: str, color: str, path: str):
         'message': message,
         'color': color
     }
-
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     with open(os.path.join(OUTPUT_DIR, path), 'w') as f:
         json.dump(badge_data, f)
