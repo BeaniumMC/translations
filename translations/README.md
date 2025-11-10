@@ -4,7 +4,7 @@ The files are named like this: `<project>/<language>/<path>.json`. (ex: `server/
 
 View the original sources in the [`/sources`](/sources) folder.  
 
-## File format
+## File formatting
 
 It is important to format the JSON correctly before creating a PR.  
 You can use [jsonlint.com](https://jsonlint.com/) to check the file content before contributing.  
