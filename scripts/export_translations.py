@@ -19,8 +19,8 @@ def compute_language_progress(project, languages):
     for lang in languages:
         lang_id = lang.id
         lang_progress = {
-            'progress': 0.0,
-            'file_progress': {},
+            'total_progress': 0.0,
+            'progress': {},
             'translators': lang.translators,  # copy from main languages.json
         }
 
@@ -46,14 +46,16 @@ def compute_language_progress(project, languages):
                 1 for k in source_keys if k in translation_data and translation_data[k].strip()
             )
 
+            source_file_name = source_file.replace('.json', '')
+
             # file-level progress (0–1 float)
             file_pct = translated / len(source_keys) if source_keys else 0
-            lang_progress['file_progress'][source_file] = file_pct
+            lang_progress['progress'][source_file_name] = file_pct
 
             total_translated += translated
 
         # global language progress (0–1 float)
-        lang_progress['progress'] = total_translated / total_keys if total_keys else 0
+        lang_progress['total_progress'] = total_translated / total_keys if total_keys else 0
 
         result[lang_id] = lang_progress
 
@@ -90,3 +92,4 @@ for project in load_projects():
         zipf.writestr('languages.json', json.dumps(new_lang_json, indent=2, ensure_ascii=False))
 
     print(f"📦 Exported {zip_name}")
+
