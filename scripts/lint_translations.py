@@ -54,7 +54,7 @@ def lint_file(source_path: str, translation_path: str, project: Project, lang: L
             # Skip further checks for this key since there is no translation value
             continue
 
-        trans_val = translation_data.get(key, '')
+        trans_val = translation_data[key]
 
         if trans_val.strip() == '':
             errors.append({
