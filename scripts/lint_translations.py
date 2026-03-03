@@ -42,7 +42,18 @@ def lint_file(source_path: str, translation_path: str, project: Project, lang: L
 
     # Check for missing, empty, and mismatched placeholders
     for key in source_keys:
-        source_val = source_data.get(key, '')
+        source_val = source_data.get(key)
+
+        if key not in translation_data:
+            errors.append({
+                'type': 'missing_key',
+                'file': file_path,
+                'key': key,
+                'message': 'Translation key is missing'
+            })
+            # Skip further checks for this key since there is no translation value
+            continue
+
         trans_val = translation_data.get(key, '')
 
         if trans_val.strip() == '':
