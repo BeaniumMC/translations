@@ -3,7 +3,7 @@ import re
 import json
 import sys
 
-from common import *
+from common import Language, Project, load_projects
 
 PLACEHOLDER_REGEX = re.compile(r"%(\d+\$)?[sd]")
 
@@ -80,7 +80,6 @@ def lint_file(source_path: str, translation_path: str, project: Project, lang: L
 
 
 def main():
-    failed = False
     all_errors = []
 
     for project in load_projects():

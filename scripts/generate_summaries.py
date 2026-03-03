@@ -3,7 +3,7 @@ import json
 
 import badges
 
-from common import *
+from common import GITHUB_REPO_URL, PUBLIC_DIR, load_projects
 
 GITHUB_REPO = f"{GITHUB_REPO_URL}/blob/main"
 OUTPUT_DIR = os.path.join(PUBLIC_DIR, 'summary')

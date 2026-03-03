@@ -2,13 +2,13 @@ import os
 import json
 import zipfile
 
-from common import *
+from common import Language, Project, load_projects
 
 OUTPUT_DIR = './exports'
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-def compute_language_progress(project, languages):
+def compute_language_progress(project: Project, languages: list[Language]) -> dict:
     """Return progress + per-file progress for each language."""
     result = {}
 
@@ -68,11 +68,6 @@ for project in load_projects():
 
     translations_dir = project.get_translations_dir()
 
-    # Load main repo languages.json (original format — stays untouched)
-    languages_file = os.path.join(translations_dir, 'languages.json')
-    with open(languages_file, encoding='utf-8') as f:
-        raw_languages = json.load(f)
-
     # Convert raw languages to lang objects from project.get_languages()
     languages = project.get_languages()
 
@@ -92,4 +87,3 @@ for project in load_projects():
         zipf.writestr('languages.json', json.dumps(new_lang_json, indent=2, ensure_ascii=False))
 
     print(f"📦 Exported {zip_name}")
-
