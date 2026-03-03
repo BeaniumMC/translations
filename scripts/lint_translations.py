@@ -56,6 +56,27 @@ def lint_file(source_path: str, translation_path: str, project: Project, lang: L
 
         trans_val = translation_data[key]
 
+        # Ensure both source and translation values are strings before further checks
+        if not isinstance(source_val, str):
+            errors.append({
+                'type': 'invalid_type',
+                'file': file_path,
+                'key': key,
+                'message': f'Source value must be a string, got {type(source_val).__name__}'
+            })
+            # Skip this key since placeholder and emptiness checks require strings
+            continue
+
+        if not isinstance(trans_val, str):
+            errors.append({
+                'type': 'invalid_type',
+                'file': file_path,
+                'key': key,
+                'message': f'Translation value must be a string, got {type(trans_val).__name__}'
+            })
+            # Skip this key since placeholder and emptiness checks require strings
+            continue
+
         if trans_val.strip() == '':
             errors.append({
                 'type': 'empty_string',
