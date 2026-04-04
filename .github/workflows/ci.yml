@@ -58,7 +58,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Download public folder artifact
         uses: actions/download-artifact@v8
@@ -71,16 +71,22 @@ jobs:
           cp public/projects.json translations/projects.json
           python scripts/export_translations.py
 
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "tag=translations-$(date +'%Y%m%d-%H%M')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
       - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: latest
-          name: Translations
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: Translations ${{ steps.tag.outputs.tag }}
           prerelease: false
           body: |
-            This release contains the latest translation exports per project.
-          overwrite: true
-          make_latest: true
+            Translation export snapshot.
+      
+            Commit: ${{ github.sha }}
+            Date: ${{ github.run_id }}
           files: exports/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
