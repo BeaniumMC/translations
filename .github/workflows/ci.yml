@@ -8,11 +8,12 @@ on:
       - translations/**
       - scripts/**
       - public/**
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy to GitHub Pages"
+        required: false
+        default: "true"
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -21,6 +22,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -32,11 +35,14 @@ jobs:
           python-version: '3.12'
 
       - name: Generate Summary
-        run: python scripts/generate_summaries.py
+        run: |
+          set -euo pipefail
+          python scripts/generate_summaries.py
 
       - name: Copy Translations
         run: |
-          mkdir public/translations/
+          set -euo pipefail
+          mkdir -p public/translations/
           cp -r translations/* public/translations/
           cp sources/projects.json public/projects.json
 
@@ -50,6 +56,8 @@ jobs:
   export:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -58,7 +66,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.14'
+          python-version: '3.12'
 
       - name: Download public folder artifact
         uses: actions/download-artifact@v8
@@ -68,6 +76,7 @@ jobs:
 
       - name: Create Project Translation Exports
         run: |
+          set -euo pipefail
           cp public/projects.json translations/projects.json
           python scripts/export_translations.py
 
@@ -84,24 +93,27 @@ jobs:
           prerelease: false
           body: |
             Translation export snapshot.
-      
             Commit: ${{ github.sha }}
-            Date: ${{ github.run_id }}
+            Run: ${{ github.run_id }}
           files: exports/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: build
+    if: github.event_name != 'workflow_dispatch' || inputs.deploy == 'true'
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
       - name: Download public folder artifact
         uses: actions/download-artifact@v8
         with:
