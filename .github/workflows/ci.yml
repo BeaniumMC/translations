@@ -109,6 +109,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Update latest tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f latest ${{ needs.build.outputs.tag }}
+          git push origin --tags --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   deploy:
     if: needs.build.outputs.tag != '' && (github.event_name != 'workflow_dispatch' || inputs.deploy == 'true')
     needs: build
