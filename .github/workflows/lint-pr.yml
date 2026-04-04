@@ -1,4 +1,4 @@
-name: Lint Translations in Pull Request
+name: Lint translations
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Run Translation Linter
         run: python scripts/lint_translations.py

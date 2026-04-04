@@ -1,4 +1,4 @@
-name: Build & Release & Deploy
+name: Build, release and deploy
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Generate Summary
         run: |
@@ -66,7 +66,7 @@ jobs:
           path: public
           retention-days: 1
 
-  export:
+  release:
     if: needs.build.outputs.tag != ''
     needs: build
     runs-on: ubuntu-latest
@@ -80,7 +80,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Download public folder artifact
         uses: actions/download-artifact@v8
@@ -97,11 +97,12 @@ jobs:
       - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.build.outputs.tag }}
           name: Translations ${{ needs.build.outputs.tag }}
-          prerelease: false
+          tag_name: ${{ needs.build.outputs.tag }}
+          make_latest: true
           body: |
             Translation export snapshot.
+
             Commit: ${{ github.sha }}
             Run: ${{ github.run_id }}
           files: exports/*.zip
