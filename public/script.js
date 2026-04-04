@@ -45,3 +45,8 @@ fetch("projects.json").then((res) => res.json()).then((projects) => {
     });
   }
 });
+
+fetch("version.txt").then((res) => res.text()).then((version) => {
+  const container = document.getElementById("translation-version");
+  container.innerText = version;
+});

@@ -25,6 +25,9 @@ jobs:
     permissions:
       contents: read
 
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -46,6 +49,16 @@ jobs:
           cp -r translations/* public/translations/
           cp sources/projects.json public/projects.json
 
+      - name: Generate release tag
+        id: tag
+        run: |
+          TAG="v$(date +'%Y.%m.%d')-${GITHUB_SHA::7}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "$TAG" > public/version.txt
+
+          # JSON version (for frontend)
+          echo "{\"version\":\"$TAG\",\"commit\":\"${GITHUB_SHA}\"}" > public/version.json
+
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v7
         with:
@@ -54,6 +67,7 @@ jobs:
           retention-days: 1
 
   export:
+    if: needs.build.outputs.tag != ''
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -80,16 +94,11 @@ jobs:
           cp public/projects.json translations/projects.json
           python scripts/export_translations.py
 
-      - name: Generate release tag
-        id: tag
-        run: |
-          echo "tag=v$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
-
       - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          name: Translations ${{ steps.tag.outputs.tag }}
+          tag_name: ${{ needs.build.outputs.tag }}
+          name: Translations ${{ needs.build.outputs.tag }}
           prerelease: false
           body: |
             Translation export snapshot.
@@ -100,8 +109,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
+    if: needs.build.outputs.tag != '' && (github.event_name != 'workflow_dispatch' || inputs.deploy == 'true')
     needs: build
-    if: github.event_name != 'workflow_dispatch' || inputs.deploy == 'true'
     runs-on: ubuntu-latest
 
     permissions:
