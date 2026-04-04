@@ -83,7 +83,7 @@ jobs:
       - name: Generate release tag
         id: tag
         run: |
-          echo "tag=translations-$(date +'%Y%m%d-%H%M')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          echo "tag=v$(date +'%Y.%m.%d')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
       - name: Upload Translation Zips to GitHub Release
         uses: softprops/action-gh-release@v2
