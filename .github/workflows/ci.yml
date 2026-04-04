@@ -61,6 +61,12 @@ jobs:
           # JSON version (for frontend)
           echo "{\"version\":\"$TAG\",\"commit\":\"${GITHUB_SHA}\"}" > public/version.json
 
+          # Create or update 'latest' tag locally
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f latest
+          git push origin --tags --force
+
       - name: Upload public folder artifact
         uses: actions/upload-artifact@v7
         with:
@@ -108,15 +114,6 @@ jobs:
             Commit: ${{ github.sha }}
             Run: ${{ github.run_id }}
           files: exports/*.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Update latest git tag
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -f latest ${{ needs.build.outputs.tag }}
-          git push origin latest --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
