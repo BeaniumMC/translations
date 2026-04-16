@@ -97,7 +97,7 @@ jobs:
           python scripts/export_translations.py
 
       - name: Upload Translation Zips to GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Translations ${{ needs.build.outputs.tag }}
           tag_name: ${{ needs.build.outputs.tag }}
